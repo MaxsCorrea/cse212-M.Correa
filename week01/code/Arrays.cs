@@ -8,12 +8,21 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Create a new double array with size 'length'.
+        // 2. Use a for loop that goes from 0 to length-1.
+        // 3. For each index i, calculate number * (i + 1) to get the ith multiple.
+        // 4. Store that value in the array at position i.
+        // 5. After the loop ends, return the array.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +34,29 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Find the number of elements to rotate: 'amount'.
+        // 2. Get the last 'amount' elements from the list.
+        // 3. Get the remaining elements from the start of the list.
+        // 4. Clear the original list.
+        // 5. Add the last 'amount' elements first.
+        // 6. Then add the remaining elements.
+        // 7. The list is now rotated right by 'amount'.
+
+        int count = data.Count;
+
+        if (count <= 1 || amount <= 0 || amount >= count)
+        {
+            // Edge case: rotating by full length or empty list doesn't change it.
+            return;
+        }
+
+        // Get the sublist to move to the front
+        List<int> lastPart = data.GetRange(count - amount, amount);
+        List<int> firstPart = data.GetRange(0, count - amount);
+
+        data.Clear();
+        data.AddRange(lastPart);
+        data.AddRange(firstPart);
     }
 }
